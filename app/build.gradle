@@ -53,6 +53,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
     // Kotlin components
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"

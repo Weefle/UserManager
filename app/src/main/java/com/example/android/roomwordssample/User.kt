@@ -20,6 +20,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
+import kotlin.collections.List
 
 /**
  * A basic class representing an entity that is a row in a one-column database table.

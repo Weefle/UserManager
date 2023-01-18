@@ -82,12 +82,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun showDialog(viewHolder: RecyclerView.ViewHolder){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Supprimer l'utilisateur ?")
-        builder.setPositiveButton("Confirm"){dialog, which->
+        builder.setTitle("Suppression utilisateur")
+        builder.setMessage("Etes-vous sûr de vouloir supprimer l'utilisateur ?")
+        builder.setPositiveButton("Confirmer"){dialog, which->
             val position = viewHolder.adapterPosition
             //val x: RecyclerView? = viewHolder as? RecyclerView
-            adapter.notifyItemRemoved(position)
             wordViewModel.delete(adapter.currentList[position])
+            adapter.notifyItemRemoved(position)
 
         }
         builder.setNegativeButton("Annuler"){dialog, which->
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
             //val x: RecyclerView? = viewHolder as? RecyclerView
             adapter.notifyItemChanged(position)
         }
+        builder.setCancelable(false)
         builder.show()
     }
 
@@ -114,14 +116,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
         }*/
-
-        if (!(requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK)) {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG
-            ).show()
-        }
 
     }
 }
