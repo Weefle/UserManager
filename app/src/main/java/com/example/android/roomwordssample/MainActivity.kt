@@ -28,6 +28,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                executeCall()
                 showDialog(viewHolder)
             }
         }
@@ -78,6 +82,22 @@ class MainActivity : AppCompatActivity() {
             // Update the cached copy of the words in the adapter.
             words.let { adapter.submitList(it) }
         }
+    }
+
+    private fun executeCall() {
+        GlobalScope.launch(Dispatchers.Main) {
+
+                val response = ApiClient.apiService.getCitation()
+
+
+                Toast.makeText(
+                    this@MainActivity,
+                    "Citation: ${response.quote}",
+                    Toast.LENGTH_LONG
+                ).show()
+
+        }
+
     }
 
     private fun showDialog(viewHolder: RecyclerView.ViewHolder){
